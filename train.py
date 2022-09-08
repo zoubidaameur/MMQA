@@ -28,19 +28,23 @@ def main():
         validation_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, 4)
         losses= {'mean_squared_error','mean_squared_error'}
         lossWeights ={0.5, 0.5}
+        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
+
     elif(db=='VDID'):
         training_generator = Generator(part='train', batch_size, (224,224, 3), True, 300,4)
         validation_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, 4)
         losses= {'mean_squared_error','mean_squared_error'}
         lossWeights ={0.5, 0.5}
+        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
+
     elif(db=='LIVE'):
         training_generator = Generator(part='train', batch_size, (224,224, 3), True, 300,4)
         validation_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, 4)
         losses= {'mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error'}
         lossWeights ={1,1,1,1,1,1,1}
+        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =7)
 
 
-    model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
     model.compile(optimizer=Adam(lr=0.0001), loss= losses, loss_weights=lossWeights)
     history =model.fit_generator(generator=training_generator, validation_data=validation_generator, use_multiprocessing=True,workers=4,epochs=epochs)
     out_model_path = db+'_epochs:'+str(epochs)
