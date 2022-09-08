@@ -25,15 +25,19 @@ def test_model(save_csv=True, db='LIVEMD', wieghts=''):
     if(db=='CIDIQ'):
         patches= 4
         test_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, patches)
+        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
+
     elif(db=='VDID'):
         patches= 4
         test_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, patches)
+        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
+ 
     elif(db=='LIVE'):
         patches= 4
         test_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, patches)
+        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =7)
 
 
-    model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
     model.load_weights('weights.h5')
 
     prediction1, prediction2 = model.predict_generator(generator=test_generator)
