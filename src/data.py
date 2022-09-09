@@ -78,8 +78,8 @@ class Generator(generator_overlapping):
         self.patches= patches
         self.overlap_stride=overlap_stride
         self.db_path = dataset_path
-        list_IDs_path = dataset_name + ".pickle"
-        labels_path = [ dataset_name +"_1.pickle", dataset_name +"_2.pickle"]
+        list_IDs_path = "data/" + dataset_name + ".pickle"
+        labels_path = ["data/"+ dataset_name +"_1.pickle", "data/" +  dataset_name +"_2.pickle"]
         self.list_IDs,self.list_labels=super().load_pkl(list_IDs_path,labels_paths,part)
         super().__init__()
         
@@ -93,8 +93,8 @@ class Generator_LIVE(generator_overlapping):
         self.patches= patches
         self.overlap_stride=overlap_stride
         self.db_path = dataset_path
-        list_IDs_path = dataset_name + ".pickle"
-        labels_path = [ dataset_name +"_1.pickle", dataset_name +"_2.pickle",  dataset_name +"_3.pickle",  dataset_name +"_4.pickle",  dataset_name +"_5.pickle",  dataset_name +"_6.pickle",  dataset_name +"_7.pickle"]
+        list_IDs_path = "data/" + dataset_name + ".pickle"
+        labels_path = [ "data/" +  dataset_name +"_1.pickle", "data/" + dataset_name +"_2.pickle",  "data/" + dataset_name +"_3.pickle", "data/" +  dataset_name +"_4.pickle",  "data/" + dataset_name +"_5.pickle",  "data/" + dataset_name +"_6.pickle", "data/" +  dataset_name +"_7.pickle"]
         self.list_IDs,self.list_labels=super().load_pkl(list_IDs_path,labels_paths,part)
         super().__init__()
         
