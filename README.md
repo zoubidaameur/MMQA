@@ -7,4 +7,12 @@ With the increasing use of image-based applications, users are constantly demand
 different viewing distances. We evaluate the proposed approach on colourlab image database image quality (CIDIQ), multi-distance laboratory for image and video engineering (M-LIVE) and viewing distance-changed image database (VDID) databases. Our model shows superior performance to state-of-the-art single and multiple viewing distance metrics.
 
 ##Network architecture
-![](data/model.pdf)
+![](model.pdf)
+
+
+##Structure of directory
+- `data.py`: data loader
+- `model.py`: models builder
+- `train.py`: training loops.
+- `main.py`: main script to start training
+- `test.py`: script for the evaluation of a trained model on a test dataset
