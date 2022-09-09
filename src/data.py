@@ -70,29 +70,31 @@ class generator_overlapping(tensorflow.keras.utils.Sequence):
 
 class Generator(generator_overlapping):
     'Generates data for Keras'
-    def __init__(self, part= "train",batch_size=1, dim=(224,224, 3), shuffle=True, overlap_stride=300, patches=4, dataset="CIDIQ"):
+    def __init__(self, part= "train",batch_size=1, dim=(224,224, 3), shuffle=True, overlap_stride=300, patches=4, dataset_name = "CIDIQ", dataset_path = "path/"):
         self.batch_size = batch_size
         self.part = part
         self.shuffle = shuffle
         self.input_dim= dim
         self.patches= patches
         self.overlap_stride=overlap_stride
-        list_IDs_path = dataset + ".pickle"
-        labels_path = [ dataset +"_1.pickle", dataset +"_2.pickle"]
+        self.db_path = dataset_path
+        list_IDs_path = dataset_name + ".pickle"
+        labels_path = [ dataset_name +"_1.pickle", dataset_name +"_2.pickle"]
         self.list_IDs,self.list_labels=super().load_pkl(list_IDs_path,labels_paths,part)
         super().__init__()
         
 class Generator_LIVE(generator_overlapping):
     'Generates data for Keras'
-    def __init__(self, part= "train",batch_size=1, dim=(224,224, 3), shuffle=True, overlap_stride=300, patches=4):
+    def __init__(self, part= "train",batch_size=1, dim=(224,224, 3), shuffle=True, overlap_stride=300, patches=4, dataset_name = "CIDIQ", dataset_path = "path/"):
         self.batch_size = batch_size
         self.part = part
         self.shuffle = shuffle
         self.input_dim= dim
         self.patches= patches
         self.overlap_stride=overlap_stride
-        list_IDs_path = dataset + ".pickle"
-        labels_path = [ dataset +"_1.pickle", dataset +"_2.pickle",  dataset +"_3.pickle",  dataset +"_4.pickle",  dataset +"_5.pickle",  dataset +"_6.pickle",  dataset +"_7.pickle"]
+        self.db_path = dataset_path
+        list_IDs_path = dataset_name + ".pickle"
+        labels_path = [ dataset_name +"_1.pickle", dataset_name +"_2.pickle",  dataset_name +"_3.pickle",  dataset_name +"_4.pickle",  dataset_name +"_5.pickle",  dataset_name +"_6.pickle",  dataset_name +"_7.pickle"]
         self.list_IDs,self.list_labels=super().load_pkl(list_IDs_path,labels_paths,part)
         super().__init__()
         
