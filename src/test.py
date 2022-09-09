@@ -11,7 +11,8 @@ import numpy as np
 
 def test_model(save_csv=True, db='LIVEMD', wieghts=''):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', default='CIDIQ' , type=str, help='CIDIQ, VDID, LIVE')
+    parser.add_argument('--dataset_name', default='CIDIQ' , type=str, help='CIDIQ, VDID, LIVE')
+    parser.add_argument('--dataset_path', type=str)
     parser.add_argument('--weight', default='weights.h5' , type=str, help='Path to weights')
     parser.add_argument('--num_patches', default=4, type=int, help='Number of patches')
     list_IDs_path = args.dataset + ".pickle"
@@ -19,11 +20,11 @@ def test_model(save_csv=True, db='LIVEMD', wieghts=''):
     list_IDs = pd.read_pickle(r'list_IDs_path')
 
     if(args.dataset=='CIDIQ' or args.dataset=='VDID'):
-        test_generator = Generator('test', 1, (224,224, 3), False, 300, patches)
+        test_generator = Generator('test', 1, (224,224, 3), False, 300, patches,args.dataset_name, args.dataset_path)
         model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)        
 
     elif(args.dataset=='LIVE'):
-        test_generator = Generator_LIVE('test', 1, (224,224, 3), False, 300, patches)
+        test_generator = Generator_LIVE('test', 1, (224,224, 3), False, 300, patches, args.dataset_name, args.dataset_path)
         model = build_model(input_shape = (224,224,3), include_top = False, num_towers =7)
 
     model.load_weights('weights.h5')

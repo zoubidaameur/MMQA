@@ -9,25 +9,21 @@ from model import *
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', default='CIDIQ' , type=str, help='CIDIQ, VDID, LIVE')
+    parser.add_argument('--dataset_name', default='CIDIQ' , type=str, help='CIDIQ, VDID, LIVE')
+    parser.add_argument('--dataset_path', type=str)
     parser.add_argument('--batch_size', default= 4 ,type=int)
     parser.add_argument('--epochs',default= 30 ,type=int)
     args = parser.parse_args() 
 
 
-    if(args.dataset=='CIDIQ'):
-        training_generator = Generator('train', args.batch_size, (224,224, 3), True, 300, 4)
-        validation_generator = Generator('test', args.batch_size, (224,224, 3), True, 300, 4)
-        losses= {'mean_squared_error','mean_squared_error'}
-        lossWeights ={0.5, 0.5}
-    elif(args.dataset=='VDID'):
-        training_generator = Generator('train', args.batch_size, (224,224, 3), True, 300,4)
-        validation_generator = Generator('test', args.batch_size, (224,224, 3), True, 300, 4)
+    if(args.dataset=='CIDIQ' or args.dataset=='VDID'):
+        training_generator = Generator('train', args.batch_size, (224,224, 3), True, 300, 4, args.dataset_name, args.dataset_path)
+        validation_generator = Generator('test', args.batch_size, (224,224, 3), True, 300, 4, args.dataset_name, args.dataset_path)
         losses= {'mean_squared_error','mean_squared_error'}
         lossWeights ={0.5, 0.5}
     elif(args.dataset=='LIVE'):
-        training_generator = Generator_LIVE('train', args.batch_size, (224,224, 3), True, 300,4)
-        validation_generator = Generator_LIVE('test', args.batch_size, (224,224, 3), True, 300, 4)
+        training_generator = Generator_LIVE('train', args.batch_size, (224,224, 3), True, 300,4, args.dataset_name, args.dataset_path)
+        validation_generator = Generator_LIVE('test', args.batch_size, (224,224, 3), True, 300, 4, args.dataset_name, args.dataset_path)
         losses= {'mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error'}
         lossWeights ={1,1,1,1,1,1,1}
 
