@@ -2,15 +2,16 @@
 Zoubida Ameur, Sid Ahmed Fezza and Wassim Hamidouche
 
 
-##Abstract
+## Abstract
 With the increasing use of image-based applications, users are constantly demanding higher quality images. Multimedia devices and services must therefore be able to meet their requirements. Accordingly, they must be able to evaluate the quality of images efficiently and reliably so they can then improve it. Images are viewed from various devices, resulting in their perceived quality being highly dependent on the device as well as the viewing distance. In this paper, we present a novel image quality metric (IQM) that assesses objectively the perceived quality of an image considering the viewing distance. Our proposed metric is a deep multi-task learning model composed of a pretrained convolutional neural network followed by N parallel networks of fully connected layers. It takes as input a single image and outputs N different quality scores corresponding to N
 different viewing distances. We evaluate the proposed approach on colourlab image database image quality (CIDIQ), multi-distance laboratory for image and video engineering (M-LIVE) and viewing distance-changed image database (VDID) databases. Our model shows superior performance to state-of-the-art single and multiple viewing distance metrics.
 
-##Network architecture
+## Network architecture
+
 ![](MMQA.png)
 
 
-##Structure of directory
+## Structure of directory
 - `data.py`: data loader
 - `model.py`: models builder
 - `train.py`: training loops.
