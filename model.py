@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar  2 08:26:31 2020
-
-@author: zameur
-"""
-
 from tensorflow.keras.layers import MaxPooling2D ,Dense ,Dropout, Flatten
 from tensorflow.keras.models import Model 
 from tensorflow.keras.applications.densenet import DenseNet169

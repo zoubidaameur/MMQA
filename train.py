@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar  2 08:26:50 2020
-
-@author: zameur
-"""
-
 import sys
 from tensorflow.keras.optimizers import Adam
 import datetime
@@ -23,30 +15,26 @@ def main():
     args = parser.parse_args() 
 
 
-    if(db=='CIDIQ'):
-        training_generator = Generator(part='train', batch_size, (224,224, 3), True, 300, 4)
-        validation_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, 4)
+    if(args.dataset=='CIDIQ'):
+        training_generator = Generator('train', args.batch_size, (224,224, 3), True, 300, 4)
+        validation_generator = Generator('test', args.batch_size, (224,224, 3), True, 300, 4)
         losses= {'mean_squared_error','mean_squared_error'}
         lossWeights ={0.5, 0.5}
-        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
-
-    elif(db=='VDID'):
-        training_generator = Generator(part='train', batch_size, (224,224, 3), True, 300,4)
-        validation_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, 4)
+    elif(args.dataset=='VDID'):
+        training_generator = Generator('train', args.batch_size, (224,224, 3), True, 300,4)
+        validation_generator = Generator('test', args.batch_size, (224,224, 3), True, 300, 4)
         losses= {'mean_squared_error','mean_squared_error'}
         lossWeights ={0.5, 0.5}
-        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
-
-    elif(db=='LIVE'):
-        training_generator = Generator(part='train', batch_size, (224,224, 3), True, 300,4)
-        validation_generator = Generator(part='test', batch_size, (224,224, 3), True, 300, 4)
+    elif(args.dataset=='LIVE'):
+        training_generator = Generator_LIVE('train', args.batch_size, (224,224, 3), True, 300,4)
+        validation_generator = Generator_LIVE('test', args.batch_size, (224,224, 3), True, 300, 4)
         losses= {'mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error','mean_squared_error'}
         lossWeights ={1,1,1,1,1,1,1}
-        model = build_model(input_shape = (224,224,3), include_top = False, num_towers =7)
 
 
+    model = build_model(input_shape = (224,224,3), include_top = False, num_towers =2)
     model.compile(optimizer=Adam(lr=0.0001), loss= losses, loss_weights=lossWeights)
-    history =model.fit_generator(generator=training_generator, validation_data=validation_generator, use_multiprocessing=True,workers=4,epochs=epochs)
+    history =model.fit_generator(generator=training_generator, validation_data=validation_generator, use_multiprocessing=True,workers=4,epochs=args.epochs)
     out_model_path = db+'_epochs:'+str(epochs)
     model.save_weights(out_model_path +'.h5')
     return True

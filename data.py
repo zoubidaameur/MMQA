@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import numpy as np
 import tensorflow.keras
 import pickle
@@ -72,16 +70,29 @@ class generator_overlapping(tensorflow.keras.utils.Sequence):
 
 class Generator(generator_overlapping):
     'Generates data for Keras'
-    def __init__(self,batch_size=1, dim=(224,224, 3), shuffle=True, overlap_stride=300, patches=4):
+    def __init__(self, part= "train",batch_size=1, dim=(224,224, 3), shuffle=True, overlap_stride=300, patches=4, dataset="CIDIQ"):
         self.batch_size = batch_size
+        self.part = part
         self.shuffle = shuffle
         self.input_dim= dim
-        self.db_path=''
         self.patches= patches
         self.overlap_stride=overlap_stride
-        list_IDs_path=''
-        labels_paths=[]
-        self.list_IDs,self.lis_labels=super().load_pkl(list_IDs_path,labels_paths,"train")
+        list_IDs_path = dataset + ".pickle"
+        labels_path = [ dataset +"_1.pickle", dataset +"_2.pickle"]
+        self.list_IDs,self.list_labels=super().load_pkl(list_IDs_path,labels_paths,part)
         super().__init__()
         
-
+class Generator_LIVE(generator_overlapping):
+    'Generates data for Keras'
+    def __init__(self, part= "train",batch_size=1, dim=(224,224, 3), shuffle=True, overlap_stride=300, patches=4):
+        self.batch_size = batch_size
+        self.part = part
+        self.shuffle = shuffle
+        self.input_dim= dim
+        self.patches= patches
+        self.overlap_stride=overlap_stride
+        list_IDs_path = dataset + ".pickle"
+        labels_path = [ dataset +"_1.pickle", dataset +"_2.pickle",  dataset +"_3.pickle",  dataset +"_4.pickle",  dataset +"_5.pickle",  dataset +"_6.pickle",  dataset +"_7.pickle"]
+        self.list_IDs,self.list_labels=super().load_pkl(list_IDs_path,labels_paths,part)
+        super().__init__()
+        
