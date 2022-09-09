@@ -29,6 +29,6 @@ CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset CIDIQ --batch_size 4 --epochs 
 To test a trained model on test-set, run the following:
 ```bash
 nvidia-smi  #to see free nodes 
-CUDA_VISIBLE_DEVICES=2 python3 test.py --dataset CIDIQ
+CUDA_VISIBLE_DEVICES=2 python3 test.py --dataset CIDIQ --weights path/to/pretrained/model --num_patches 4
 ```
 
