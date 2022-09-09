@@ -17,7 +17,7 @@ different viewing distances. We evaluate the proposed approach on colourlab imag
   - `model.py`: models builder
   - `train.py`: training loops.
   - `test.py`: script for the evaluation of a trained model on a test dataset
- -'data': contain pickle files of the datasets labels
+ -`data`: contain pickle files of the datasets labels
 
 
 ## Training : 
