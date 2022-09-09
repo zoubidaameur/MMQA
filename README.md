@@ -23,12 +23,12 @@ different viewing distances. We evaluate the proposed approach on colourlab imag
 To train the model, run the following command :
 ```bash
 nvidia-smi 
-CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset CIDIQ --batch_size 4 --epochs 30
+CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset_name CIDIQ  --dataset_path path/to/dataset --batch_size 4 --epochs 30
 ```
 ## Testing:
 To test a trained model on test-set, run the following:
 ```bash
 nvidia-smi  #to see free nodes 
-CUDA_VISIBLE_DEVICES=2 python3 test.py --dataset CIDIQ --weights path/to/pretrained/model --num_patches 4
+CUDA_VISIBLE_DEVICES=2 python3 test.py --dataset_name CIDIQ  --dataset_path path/to/dataset  --weights path/to/pretrained/model --num_patches 4
 ```
 
