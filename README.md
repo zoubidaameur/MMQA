@@ -16,3 +16,19 @@ different viewing distances. We evaluate the proposed approach on colourlab imag
 - `train.py`: training loops.
 - `main.py`: main script to start training
 - `test.py`: script for the evaluation of a trained model on a test dataset
+
+
+## Training : 
+To train the model, run the following command :
+```bash
+nvidia-smi 
+CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset CIDIQ --batch_size 4 --epochs 30
+```
+## Testing:
+To test a trained model on test-set, run the following:
+```bash
+nvidia-smi  #to see free nodes 
+CUDA_VISIBLE_DEVICES=2 python3 test.py --dataset CIDIQ
+
+##Citation
+
