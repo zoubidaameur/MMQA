@@ -30,5 +30,4 @@ To test a trained model on test-set, run the following:
 nvidia-smi  #to see free nodes 
 CUDA_VISIBLE_DEVICES=2 python3 test.py --dataset CIDIQ
 ```
-##Citation
 
