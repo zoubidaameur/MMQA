@@ -12,11 +12,12 @@ different viewing distances. We evaluate the proposed approach on colourlab imag
 
 
 ## Structure of directory
-- `data.py`: data loader
-- `model.py`: models builder
-- `train.py`: training loops.
-- `main.py`: main script to start training
-- `test.py`: script for the evaluation of a trained model on a test dataset
+- `src`: 
+	- `data.py`: data loader
+  - `model.py`: models builder
+  - `train.py`: training loops.
+  - `test.py`: script for the evaluation of a trained model on a test dataset
+ -'data': contain pickle files of the datasets labels
 
 
 ## Training : 
